@@ -8,7 +8,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(mavros_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
+add_executable(simple_node src/simple_node.cpp)
+ament_target_dependencies(simple_node rclcpp std_msgs)
+
+install(TARGETS
+  simple_node
+  DESTINATION lib/${PROJECT_NAME})
 
 
 if(BUILD_TESTING)
